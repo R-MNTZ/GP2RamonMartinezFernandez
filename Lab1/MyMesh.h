@@ -67,7 +67,7 @@ public:
 	void form();
 	void updateSphere(glm::vec3 pos, float r);
 	void updateTransform1();
-	void init(VertStruct* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
+	void initThis(VertStruct* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
 	void prepareModel(const std::string& filename);
 	void startModel(const IndexedModel& model);
 

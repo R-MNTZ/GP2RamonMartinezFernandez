@@ -4,8 +4,8 @@
 
 
 
-
-void MyMesh::init(VertStruct* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices)
+/*
+void MyMesh::initThis(VertStruct* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices)
 {
 	IndexedModel model;
 
@@ -25,6 +25,7 @@ void MyMesh::init(VertStruct* vertices, unsigned int numVertices, unsigned int* 
 	startModel(model);
 	
 }
+*/
 
 void MyMesh::startModel(const IndexedModel& model)
 {
