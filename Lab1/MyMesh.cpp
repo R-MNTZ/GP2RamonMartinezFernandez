@@ -65,7 +65,7 @@ MyMesh::MyMesh()
 }
 
 void MyMesh::prepareModel(const std::string& filename)
-{
+{//find model using filename, and load it
 	IndexedModel model = OBJModel(filename).ToIndexedModel();
 	startModel(model);
 }
@@ -76,39 +76,23 @@ MyMesh::~MyMesh()
 }
 
 void MyMesh::form()
-{
+{//draw the model
 	glBindVertexArray(vertexArrayObject);
 	
 	glDrawElements(GL_TRIANGLES, counterDraw, GL_UNSIGNED_INT, 0);
-	//glDrawArrays(GL_TRIANGLES, 0, counterDraw);
+	
 	
 	glBindVertexArray(0);
 }
 
 void MyMesh::updateSphere(glm::vec3 pos, float r)
 {
+	//set the position of the spheres
 	meshSphere.SetPosition(pos);
 	meshSphere.SetRadius(r);
 	
 }
 
-void MyMesh::updateTransform1() {
-	GameScene gs;
-	transformMonkey.SetPosition(glm::vec3(gs.movX, gs.movY, 0));
-	transformMonkey.SetRotation(glm::vec3(gs.rotX, gs.rotY, gs.rotZ));
-	transformMonkey.SetScale(glm::vec3(1, 1, 1));
 
-	transformBullet.SetPosition(glm::vec3(gs.initialBulletPosx, gs.initialBulletPosy, 0));
-	transformBullet.SetRotation(glm::vec3(0, 0, 0));
-	transformBullet.SetScale(glm::vec3(0.1, 0.1, 0.1));
-
-	transformCeiling.SetPosition(glm::vec3(0, 0, gs.sbPos));
-	transformCeiling.SetRotation(glm::vec3(0, 0, 0));
-	transformCeiling.SetScale(glm::vec3(gs.sbScale, gs.sbScale, 1));
-
-	transformEgg.SetPosition(glm::vec3(gs.eggX, 0, 0));
-	transformEgg.SetRotation(glm::vec3(0, 0, 0));
-	transformEgg.SetScale(glm::vec3(1, 1, 1));
-}
 
 

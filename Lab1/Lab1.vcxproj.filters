@@ -108,5 +108,14 @@
     <Object Include="..\res\peanut.obj">
       <Filter>Resource Files</Filter>
     </Object>
+    <Object Include="..\res\Banana.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
+    <Object Include="..\res\box.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
+    <Object Include="..\res\beachBall.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
   </ItemGroup>
 </Project>

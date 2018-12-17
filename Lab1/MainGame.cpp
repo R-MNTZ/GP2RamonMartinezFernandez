@@ -16,15 +16,9 @@
 
 GameScene::GameScene()
 {
-	_gameStatus = GameStatus::PLAY;
+	_gameStatus = GameStatus::PLAY; //Set status to PLAY
 	MyDisplay* _presentGame = new MyDisplay(); //new display
-	
 
-   // MyMesh* monkeyMesh();
-	//MyMesh* mesh2();
-	//TextureClass* texture();
-	//TextureClass* texture2();
-	//MyShader* shader();
 }
 
 GameScene::~GameScene()
@@ -40,9 +34,8 @@ void GameScene::gameSceneRun()
 
 void GameScene::startSystems()
 {
-	
+	//Initialise display and models, textures and shaders
 	_presentGame.initMyDIsplay(); 
-	//monkeyMesh.initTex(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0])); //size calcuated by number of bytes of an array / no bytes of one element
 	monkeyMesh.prepareModel("..\\res\\monkey3.obj");
 	texture.initTex("..\\res\\bricks.jpg"); //
 	shader.init("..\\res\\shader"); //new shader
@@ -74,15 +67,14 @@ void GameScene::startSystems()
 	eggMesh.prepareModel("..\\res\\peanut.obj");
 	texture3.initTex("..\\res\\peanut.jpg"); //
 
+	//Initialise camera
 	camera1.startMainCamera(glm::vec3(0, 0, -25), 70.0f, (float)_presentGame.getWidth()/_presentGame.getHeight(), 0.01f, 1000.0f);
-	//camera2.startMainCamera(glm::vec3(1, 1, -15), 70.0f, (float)_presentGame.getWidth() / _presentGame.getHeight(), 0.01f, 1000.0f);
-	
-	
+		
 	
 }
 
 void GameScene::mainGameLoop()
-{
+{//Run all essential methods while status isn't exit 
 	while (_gameStatus != GameStatus::EXIT)
 	{
 		
@@ -116,10 +108,11 @@ void GameScene::processInput()
 				//}
 				//Move object to the right
 				movX -= 0.2;
-				//Mak it face right
+				//Make it face right
 				rotY = -1.67;
 				lookRight = true;
 				lookLeft = false;
+				//Move camera alongside monkey
 				camera1.MoveLeft(0.2);
 
 			}
@@ -134,6 +127,7 @@ void GameScene::processInput()
 				rotY = 1.67;
 				lookRight = false;
 				lookLeft = true;
+				//Move camera alongside monkey
 				camera1.MoveRight(0.2);
 
 			}
@@ -145,6 +139,7 @@ void GameScene::processInput()
 				movY += 0.2;
 				//Re-set rotation
 				rotY = 0;
+				//Move camera alongside monkey
 				camera1.MoveUp(0.2);
 				lookRight = false;
 				lookLeft = false;
@@ -159,10 +154,12 @@ void GameScene::processInput()
 				rotY = 0;
 				lookRight = false;
 				lookLeft = false;
+				//Move camera alongside monkey
 				camera1.MoveDown(0.2);
 			}
 
 			if (evnt.key.keysym.sym == SDLK_q) {
+				//Increase the monkey's rotation's x value
 				rotX += 0.1;
 			}
 
@@ -175,10 +172,11 @@ void GameScene::processInput()
 			}
 
 			if (evnt.key.keysym.sym == SDLK_v) {
+				//Rotate camera on x-axis
 				camera1.Pitch(0.08);
 			}
 
-
+			//Call shoot left or right
 			if (evnt.key.keysym.sym == SDLK_SPACE) {
 				if (lookLeft == true) {
 					shoot('l');
@@ -195,7 +193,7 @@ void GameScene::processInput()
 
 
 
-
+// If we quit SDL status is set to exit
 		case SDL_QUIT:
 			_gameStatus = GameStatus::EXIT;
 			break;
@@ -210,70 +208,28 @@ void GameScene::processInput()
 
 void GameScene::drawMainGame()
 {
+	//Clear the display
 	_presentGame.clearMyDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 	
-	
+	//Bind shaders, update shaders, bind textures and draw models
 	shader.BindShader();
 	shader.Update(monkeyMesh.transformMonkey, camera1);
 	texture.TexBind(0);
 	monkeyMesh.form();
 	
-
 	shader.Update(bulletMesh.transformBullet, camera1);
 	texture.TexBind(0);
 	bulletMesh.form();
-	
-	
 	
 	shader.Update(ceilingMesh.transformCeiling, camera1);
 	texture2.TexBind(0);
 	ceilingMesh.form();
 
-	/*
-	floorMesh.transformFloor.SetPosition(glm::vec3(movX, movY, -sbPos));
-	floorMesh.transformFloor.SetRotation(glm::vec3(0, 0, 0));
-	floorMesh.transformFloor.SetScale(glm::vec3(sbScale, sbScale, 1));
-	shader.Update(floorMesh.transformFloor, camera1);
-	//texture2.TexBind(0);
-	floorMesh.form();
-	
-	transformNorthWall.SetPosition(glm::vec3(movX, sbPos + movY, 0));
-	transformNorthWall.SetRotation(glm::vec3(0, 0, 0));
-	transformNorthWall.SetScale(glm::vec3(sbScale, 1, sbScale));
-	shader.Update(transformNorthWall, camera1);
-	textureNw.TexBind(0);
-	northwallMesh.form();
-
-	transformSouthWall.SetPosition(glm::vec3(movX, movY - sbPos, 0));
-	transformSouthWall.SetRotation(glm::vec3(0, 0, 0));
-	transformSouthWall.SetScale(glm::vec3(sbScale, 1, sbScale));
-	shader.Update(transformSouthWall, camera1);
-	//textureNw.TexBind(0);
-	southwallMesh.form();
-
-	transformEastWall.SetPosition(glm::vec3(movX + sbPos, movY , 0));
-	transformEastWall.SetRotation(glm::vec3(0, 0, 0));
-	transformEastWall.SetScale(glm::vec3(1, sbScale, sbScale));
-	shader.Update(transformEastWall, camera1);
-	//textureNw.TexBind(0);
-	eastwallMesh.form();
-
-	transformWestWall.SetPosition(glm::vec3(movX - sbPos, movY, 0));
-	transformWestWall.SetRotation(glm::vec3(0, 0, 0));
-	transformWestWall.SetScale(glm::vec3(1, sbScale, sbScale));
-	shader.Update(transformWestWall, camera1);
-	//textureNw.TexBind(0);
-	westwallMesh.form();
-	*/
-	
-	
 	shader.Update(eggMesh.transformEgg, camera1);
 	texture3.TexBind(0);
 	eggMesh.form();
 
-
-	
-				
+	//Enable GL_COLOR_ARRAY
 	glEnableClientState(GL_COLOR_ARRAY); 
 	//glEnd();
 
@@ -360,10 +316,14 @@ void GameScene::updateTransform() {
 
 	eggMesh.transformEgg.SetPosition(glm::vec3(eggX, 0, 0));
 	eggMesh.transformEgg.SetRotation(glm::vec3(0, 0, 0));
-	eggMesh.transformEgg.SetScale(glm::vec3(1, 1, 1));
+	eggMesh.transformEgg.SetScale(glm::vec3(0.4, 0.4 , 0.4));
 
+	//Update spheres of objects that can collide
 	bulletMesh.updateSphere(*bulletMesh.transformBullet.GetPosition(), 1.0);
 	eggMesh.updateSphere(*eggMesh.transformEgg.GetPosition(), 1.0);
+
+
+
 	
 }
 

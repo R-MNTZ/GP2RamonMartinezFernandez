@@ -46,23 +46,26 @@ void MyDisplay::initMyDIsplay()
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);// set up z-buffer
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // set up double buffer   
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // set up double buffer  
 
+	//Create window
 	winSDL = SDL_CreateWindow("Kachow!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)scrWidth, (int)scrHeight, SDL_WINDOW_OPENGL); // create window
-
+	//Check window has been created correctly
 	if (winSDL == nullptr)
 	{
 		returnError("window failed to create");
 	}
 
+	//Create context
 	contextGL = SDL_GL_CreateContext(winSDL);
-
+	//Check contxt has been created correctly
 	if (contextGL == nullptr)
 	{
 		returnError("SDL_GL context failed to create");
 	}
 
 	GLenum error = glewInit();
+
 	if (error != GLEW_OK)
 	{
 		returnError("GLEW failed to initialise");
