@@ -47,6 +47,7 @@ void MyShader::BindShader()
 
 void MyShader::Update(const TransformStruct& transform, const MainCamera& camera)
 {
+	//get mvp matrix, set it to the uniform value
 	glm::mat4 mvp = camera.GetVP() * transform.GetModel();
 	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &mvp[0][0]);
 }
@@ -74,6 +75,7 @@ GLuint MyShader::CreateShader(const std::string& text, unsigned int type)
 
 std::string MyShader::LoadShader(const std::string& fileName)
 {
+	//Use I/O to get the file from the filename
 	std::ifstream file;
 	file.open((fileName).c_str());
 
@@ -98,6 +100,7 @@ std::string MyShader::LoadShader(const std::string& fileName)
 
 void MyShader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
 {
+	//Check for errors, throw an error message if there's any
 	GLint success = 0;
 	GLchar error[1024] = { 0 };
 
