@@ -45,7 +45,7 @@ void GameScene::startSystems()
 
 	bulletMesh.prepareModel("..\\res\\cube.obj");
    
-
+	
 	
 	/*
 	floorMesh.prepareModel("..\\res\\cube.obj");
@@ -70,7 +70,11 @@ void GameScene::startSystems()
 	//Initialise camera
 	camera1.startMainCamera(glm::vec3(0, 0, -25), 70.0f, (float)_presentGame.getWidth()/_presentGame.getHeight(), 0.01f, 1000.0f);
 		
-	
+	//Display message with controls
+	std::cout << "Controls: WASD to move" << endl;
+	std::cout << "Q to rotate monkey" << endl;
+	std::cout << "X and C to move camera forwards and backwards" << endl;
+	std::cout << "Space to shoot" << endl;
 }
 
 void GameScene::mainGameLoop()
@@ -85,8 +89,7 @@ void GameScene::mainGameLoop()
 		if (checkCol(bulletMesh.getSpherePos(), 5.0f, eggMesh.getSpherePos(), 5.0f) == true) {
 			
 				//Move the egg if it gets shot
-				eggX = 100;
-				
+				eggX = -20 + (std::rand() % (20 - -20 + 1));
 		} 
 		
 	}
@@ -317,11 +320,14 @@ void GameScene::updateTransform() {
 
 	eggMesh.transformEgg.SetPosition(glm::vec3(eggX, 0, 0));
 	eggMesh.transformEgg.SetRotation(glm::vec3(0, 0, 0));
-	eggMesh.transformEgg.SetScale(glm::vec3(0.4, 0.4 , 0.4));
+	eggMesh.transformEgg.SetScale(glm::vec3(1, 1 , 1));
+
+	
 
 	//Update spheres of objects that can collide
 	bulletMesh.updateSphere(*bulletMesh.transformBullet.GetPosition(), 1.0);
-	eggMesh.updateSphere(*eggMesh.transformEgg.GetPosition(), 1.0);
+	//The position of the sphere is modified because the model's centre is set to its top, not its centre
+	eggMesh.updateSphere(glm::vec3(eggX, -5, 0), 5);
 
 
 

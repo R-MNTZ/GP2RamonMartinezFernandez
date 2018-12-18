@@ -24,6 +24,7 @@ protected:
 private:
 	static const unsigned int NUMBoF_SHADERS = 2; // number of shaders
 
+	//uniforms
 	enum
 	{
 		TRANSFORM_U,

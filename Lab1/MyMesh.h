@@ -53,21 +53,18 @@ public:
 	~MyMesh();
 	Sphere meshSphere;
 
+	//Transforms of the game objects
 	TransformStruct transformMonkey;
 	TransformStruct transformCeiling;
-	TransformStruct transformFloor;
-	TransformStruct transformNorthWall;
-	TransformStruct transformSouthWall;
-	TransformStruct transformEastWall;
-	TransformStruct transformWestWall;
 	TransformStruct transformEgg;
 	TransformStruct transformBullet;
+	TransformStruct transformBullets[9];
 	
 
 	void form();
 	void updateSphere(glm::vec3 pos, float r);
-	void updateTransform1();
-	void initThis(VertStruct* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
+	//void updateTransform1();
+	//void initThis(VertStruct* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
 	void prepareModel(const std::string& filename);
 	void startModel(const IndexedModel& model);
 
@@ -77,7 +74,7 @@ public:
 private:
 
 
-
+	//Buffers
 	enum
 	{
 		POSITION_VERTEXBUFFER,

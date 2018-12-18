@@ -24,7 +24,9 @@ private:
 	
 	SDL_GLContext contextGL; //global variable to hold the context
 	SDL_Window* winSDL; //holds pointer to out window
-	float scrWidth;
+	
+	//Screen dimensions
+	float scrWidth;  
 	float scrHeight;
 };
 

@@ -23,17 +23,7 @@ public:
 
 	void updateTransform();
 
-	float movX = 0;
-	float movY = 0;
-	float rotX = 0;
-	float rotY = 0;
-	float rotZ = 0;
-	float cameraSpeed = 0.5;
-	float initialBulletPosx = 100;
-	float initialBulletPosy = 0;
-	float eggX = 12;
-	float sbPos = 50;
-	float sbScale = 100;
+
 
 
 private:
@@ -47,39 +37,52 @@ private:
 
 	MyDisplay _presentGame;
 	GameStatus _gameStatus;
+	//Meshes for the game objects
 	MyMesh monkeyMesh;
 	MyMesh ceilingMesh;
 	MyMesh eggMesh;
 	MyMesh bulletMesh;
 
-	/*
-	MyMesh floorMesh;
-	MyMesh northwallMesh;
-	MyMesh southwallMesh;
-	MyMesh eastwallMesh;
-	MyMesh westwallMesh;
-	*/
-
+	//Camera
 	MainCamera camera1;
+
+	//Textues for game objects 
 	TextureClass texture; 
 	TextureClass texture2;
 	TextureClass texture3;
 	TextureClass textureNw;
+
+
 	MyShader shader;
 
 
-
+	
+	//Audio
 	unsigned int whistle;
 	unsigned int backGroundMusic;
 
+	//bools used for shooting
 	bool shootRight = false;
 	bool shootLeft = false;
 	bool lookLeft = false;
 	bool lookRight = false;
 
+	//these are set to the position, scale and rotation of various game objects
+	float movX = 0;
+	float movY = 0;
+	float rotX = 0;
+	float rotY = 0;
+	float rotZ = 0;
+	float initialBulletPosx = 100;
+	float initialBulletPosy = 0;
+	float eggX = 12;
+	float sbPos = 50;
+	float sbScale = 100;
 	
-	
+	//Camera's movement speed
+    float cameraSpeed = 0.5;
 
+	
 
 };
 

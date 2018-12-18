@@ -75,7 +75,11 @@ public:
 
 protected:
 private:
+
+	//projection matrix
 	glm::mat4 projection;
+
+	//Positional vectors of the camera
 	glm::vec3 position;
 	glm::vec3 forward;
 	glm::vec3 up;

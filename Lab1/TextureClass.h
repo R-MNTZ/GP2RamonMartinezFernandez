@@ -15,6 +15,7 @@ public:
 protected:
 private:
 
+	//Handle to refer to the textures by
 	GLuint texHandler;
 };
 

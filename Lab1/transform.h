@@ -14,6 +14,7 @@ public:
 		this->scale = scale;
 	}
 
+	//Returns the model matrix
 	inline glm::mat4 GetModel() const
 	{
 		glm::mat4 positionMatrix = glm::translate(position);
