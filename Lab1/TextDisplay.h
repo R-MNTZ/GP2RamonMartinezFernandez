@@ -4,6 +4,7 @@
 #include <GL/GLU.h>
 #include <GL/glut.h>
 
+//Not implemented
 void drawText1(const char *text, int length, int x, int y) {
 	glMatrixMode(GL_PROJECTION);
 	double *matrix = new double[16];

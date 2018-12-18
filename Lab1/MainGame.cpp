@@ -256,7 +256,8 @@ bool GameScene::checkCol(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2
 }
 /*
 void GameScene ::setFog() {
-	
+	//Not implemented
+
 	float fogColor[4] = { 0 , 0 , 0 , 1.0 };
 	glEnable(GL_FOG);
 	glFogi(GL_FOG_MODE, GL_LINEAR);
