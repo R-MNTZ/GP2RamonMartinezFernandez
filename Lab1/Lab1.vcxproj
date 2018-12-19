@@ -74,7 +74,7 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="MyDisplay.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="MyMesh.cpp" />
     <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="MyShader.cpp" />

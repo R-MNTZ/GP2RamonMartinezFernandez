@@ -50,6 +50,7 @@ private:
 	TextureClass texture; 
 	TextureClass texture2;
 	TextureClass texture3;
+	TextureClass texture4;
 	TextureClass textureNw;
 
 

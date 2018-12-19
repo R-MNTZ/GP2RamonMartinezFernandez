@@ -44,7 +44,8 @@ void GameScene::startSystems()
     texture2.initTex("..\\res\\water.jpg"); 
 
 	bulletMesh.prepareModel("..\\res\\cube.obj");
-   
+	texture4.initTex("..\\res\\redandwhite.jpg");
+
 	
 	
 	/*
@@ -221,7 +222,7 @@ void GameScene::drawMainGame()
 	monkeyMesh.form();
 	
 	shader.Update(bulletMesh.transformBullet, camera1);
-	texture.TexBind(0);
+	texture4.TexBind(0);
 	bulletMesh.form();
 	
 	shader.Update(ceilingMesh.transformCeiling, camera1);
@@ -312,7 +313,7 @@ void GameScene::updateTransform() {
 
 	bulletMesh.transformBullet.SetPosition(glm::vec3(initialBulletPosx, initialBulletPosy, 0));
 	bulletMesh.transformBullet.SetRotation(glm::vec3(0, 0, 0));
-	bulletMesh.transformBullet.SetScale(glm::vec3(0.1, 0.1, 0.1));
+	bulletMesh.transformBullet.SetScale(glm::vec3(0.2, 0.1, 0.2));
 
 	ceilingMesh.transformCeiling.SetPosition(glm::vec3(0, 0, sbPos));
 	ceilingMesh.transformCeiling.SetRotation(glm::vec3(0, 0, 0));
